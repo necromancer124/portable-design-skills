@@ -1,0 +1,5 @@
+---
+description: Use the repository's portable design skills for visual artifact tasks
+alwaysApply: true
+---
+Read `AGENTS.md`, then the relevant `skills/*/SKILL.md`. Use actual Wada palette data and the host tools available to you. Do not invent proprietary tool calls or publish private assets. Native skill installation depends on client version; this rule is a plain instruction bridge.

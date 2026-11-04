@@ -1,0 +1,9 @@
+{
+  "source": "https://raw.githubusercontent.com/mattdesl/dictionary-of-colour-combinations/master/colors.json",
+  "sha256_download_bytes": "555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4",
+  "retrieved_utc": "2026-11-04T15:23:38.559209+00:00",
+  "dataset_author": "Matt DesLauriers",
+  "original_transcription": "Dain M. Blodorn Kim",
+  "license": "MIT; see references/DATA-LICENSE.md",
+  "note": "Community transcription and profile-converted sRGB approximations, not a complete book or authoritative printed color match."
+}

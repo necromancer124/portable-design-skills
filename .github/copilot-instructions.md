@@ -1,0 +1,1 @@
+Use `AGENTS.md` and the relevant `skills/*/SKILL.md` instructions for visual design tasks. Run real palette lookups, preserve attribution, and verify generated artifacts. This file is a convenience instruction pointer, not a guarantee of native skill discovery.
