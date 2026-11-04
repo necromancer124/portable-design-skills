@@ -1,6 +1,6 @@
 ---
 name: html-poster-design
-description: Use when creating or revising HTML posters, exporting high-resolution PNGs, or producing Russian and Hebrew variants with uncropped images and reliable layout.
+description: Use when creating or revising HTML posters, exporting high-resolution PNGs, or producing multiple language variants with uncropped images and reliable layout.
 license: MIT
 compatibility: Authoring works with any Markdown-reading agent. PNG export requires Python 3.10+, Playwright, and an explicitly installed Chromium, Chrome, or Edge browser.
 metadata:
@@ -17,7 +17,7 @@ Use HTML/CSS as an editable design canvas, then render the actual PNG. This skil
 ## When to use
 - The user wants a poster, shareable image, fan tribute, announcement, or visual quote.
 - An existing poster needs a new photo, name, palette, or language.
-- Multiple PNGs must share a layout while preserving Hebrew RTL or Russian Cyrillic.
+- Multiple PNGs must share a layout while preserving the requested languages and character sets.
 
 ## Workflow
 
@@ -49,9 +49,9 @@ For a bounded frame, set both frame dimensions and keep `object-fit: contain`. E
 Done: complete UTF-8 HTML exists; names and visible text are correct.
 
 ### 4. Create separate language variants
-Use `<html lang="ru" dir="ltr">` for Russian and `<html lang="he" dir="rtl">` for Hebrew. Translate naturally rather than word-by-word; retain requested exact phrases when intentional. Use `<bdi>` or `dir="ltr"` for Latin strings inside RTL text. Inspect punctuation, mixed-script numbers, line wraps, and fallback fonts in the rendered image.
+Set the HTML `lang` attribute to the requested language, such as `<html lang="ru">` for Russian. Translate naturally rather than word-by-word; retain requested exact phrases when intentional. Inspect punctuation, line wraps, Cyrillic support, and fallback fonts in the rendered image.
 
-Do not mirror a face, flag, logo, or photograph just to mirror the layout. Keep image bytes unchanged; mirror the grid placement instead. A politician's slogan is not a verified quote. Check quotations against a reliable source, or clearly call them user-written copy. Never invent a named person's endorsement.
+Keep faces, flags, logos, and photographs unchanged unless the user explicitly requests an image transformation. A politician's slogan is not a verified quote. Check quotations against a reliable source, or clearly call them user-written copy. Never invent a named person's endorsement.
 
 Done: each language file has independently reviewed text, direction, and line breaks.
 
@@ -83,7 +83,7 @@ Only render trusted HTML. Network blocking is not a security sandbox: JavaScript
 Done: a real PNG exists; a zero exit status is not a substitute for seeing it.
 
 ### 7. Inspect and deliver
-Open the PNG in the agent's image viewer. Check headline/quote/footers, image crop, labels, and RTL. If clipped, repair the composition and rerender. Keep the previous version when making significant revisions. Reopen or attach the final file the user will receive, not a stale screenshot.
+Open the PNG in the agent's image viewer. Check headline/quote/footers, image crop, labels, and punctuation. If clipped, repair the composition and rerender. Keep the previous version when making significant revisions. Reopen or attach the final file the user will receive, not a stale screenshot.
 
 Provide PNG and editable HTML if requested. For a requested Desktop copy, discover the actual Desktop path instead of assuming an English folder or ignoring OneDrive redirection. Copy only the requested artifacts and read them back or compare hashes before claiming success. Use your host agent's file-delivery tools; no Hermes-specific delivery marker is required by the skill.
 
@@ -93,7 +93,7 @@ Done: concise delivery with exact paths/URLs and an accurate account of verifica
 - Using a screenshot of the old version after editing HTML.
 - Suppressing broken images or substituting an unrelated photo without saying so.
 - A `width` change that distorts an image because a fixed height remains.
-- A footer hiding body text; RTL text inheriting LTR punctuation order.
+- A footer hiding body text or punctuation wrapping onto the wrong line.
 - Assuming the user's Desktop is `~/Desktop` on every OS.
 - Claiming a full test suite passed after merely rendering the image.
 

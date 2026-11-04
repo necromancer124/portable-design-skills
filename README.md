@@ -14,7 +14,7 @@ No API key, paid AI provider, Claude Design account, or hosted image service is 
 | --- | --- |
 | [`sanzo-wada-design`](skills/sanzo-wada-design/SKILL.md) | 159 colors and 348 combinations, offline lookup/filtering, palette gallery, and pairwise contrast checks. |
 | [`artifact-design`](skills/artifact-design/SKILL.md) | Composition-first design, typography, responsive behavior, image handling, source honesty, and visual review. |
-| [`html-poster-design`](skills/html-poster-design/SKILL.md) | Editable HTML posters, Russian/Hebrew/RTL guidance, a generic template, and a working PNG export CLI. |
+| [`html-poster-design`](skills/html-poster-design/SKILL.md) | Editable HTML posters, language-variant guidance, a generic template, and a working PNG export CLI. |
 
 These are procedures, not a single fixed aesthetic. Pink, burgundy, blue, or restrained editorial layouts are choices driven by the brief—not a requirement to imitate any AI vendor's branding.
 
@@ -31,7 +31,7 @@ Then ask your file-capable assistant:
 
 Or:
 
-> Use combination 75 to make a 1080 × 1350 poster. Keep my supplied image uncropped. Make separate Russian and Hebrew versions, export PNGs, and inspect the renders. Do not publish my photos.
+> Use combination 75 to make a 1080 × 1350 poster. Keep my supplied image uncropped. Make separate English and Russian versions, export PNGs, and inspect the renders. Do not publish my photos.
 
 **Native installation:** copy the skill folders into your client's supported skill directory. Claude Code uses `.claude/skills/`; Codex uses `.agents/skills/`; Hermes supports profile-local and trusted project skills. Exact instructions and official links are in [compatibility.md](docs/compatibility.md).
 
@@ -61,7 +61,7 @@ python -m playwright install chromium
 python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster --width 1080 --height 1350 --scale 2
 ```
 
-This creates a **2160 × 2700 PNG** from a real 1080 × 1350 HTML canvas. A generic Hebrew/RTL template is also included at [`poster-he.html`](skills/html-poster-design/assets/poster-he.html), with a [rendered preview](docs/poster-he-preview.png). To use an existing browser instead, add `--browser msedge` or `--browser chrome`.
+This creates a **2160 × 2700 PNG** from a real 1080 × 1350 HTML canvas. To use an existing browser instead, add `--browser msedge` or `--browser chrome`.
 
 The renderer blocks remote HTTP(S) assets unless `--allow-network` is explicitly supplied. Use embedded or local assets for offline artifacts. **Render trusted HTML only:** network blocking is not a security sandbox.
 

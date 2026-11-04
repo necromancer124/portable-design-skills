@@ -28,7 +28,7 @@ class RendererTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             source = Path(tmp) / 'poster.html'
             output = Path(tmp) / 'poster.png'
-            source.write_text('<!doctype html><meta charset="utf-8"><style>body{margin:0}.poster{width:200px;height:300px;background:#a7d4e4}</style><main class="poster">Hello / שלום / Привет</main>', encoding='utf-8')
+            source.write_text('<!doctype html><meta charset="utf-8"><style>body{margin:0}.poster{width:200px;height:300px;background:#a7d4e4}</style><main class="poster">Hello / Привет</main>', encoding='utf-8')
             result = subprocess.run([sys.executable, str(RENDERER), str(source), '--output', str(output), '--width', '200', '--height', '300', '--scale', '2', '--selector', '.poster', '--browser', os.environ.get('RENDER_BROWSER', 'chromium')], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertTrue(output.exists(), 'Renderer did not create a PNG')

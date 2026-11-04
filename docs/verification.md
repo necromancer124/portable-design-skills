@@ -21,7 +21,7 @@ CI is configured for Windows and Linux with Python 3.11 and installed Chromium. 
 - Contrast helper checks opaque six-digit sRGB pairs, not a full WCAG audit.
 - Wada colors are screen approximations, not certified print values.
 - The upstream Dull Violet Black CMYK entry has an out-of-range value; it is preserved and reported rather than silently fixed.
-- Renderer checks `<img>` decoding and JavaScript exceptions, but visual review is still needed for overflow, CSS backgrounds, font substitution, and RTL.
+- Renderer checks `<img>` decoding and JavaScript exceptions, but visual review is still needed for overflow, CSS backgrounds, font substitution, and punctuation.
 - HTTP(S) blocking is not a sandbox. Render only trusted HTML.
 - No paid AI APIs or account credentials are needed by the included scripts.
 - Open Agent Skills format compatibility is not a promise of auto-discovery in every AI product. See `compatibility.md`.
