@@ -1,0 +1,12 @@
+{
+  "name": "portable-design-skills",
+  "version": "1.0.0",
+  "description": "Three design skills for posters, flyers, websites, landing pages and dashboards: real Sanzo Wada color palettes with contrast checks, a composition-first design workflow, and HTML posters exported to PNG.",
+  "author": {
+    "name": "necromancer124"
+  },
+  "homepage": "https://github.com/necromancer124/portable-design-skills",
+  "repository": "https://github.com/necromancer124/portable-design-skills",
+  "license": "MIT",
+  "keywords": ["design", "poster", "website", "landing-page", "color", "palette", "sanzo-wada", "png"]
+}

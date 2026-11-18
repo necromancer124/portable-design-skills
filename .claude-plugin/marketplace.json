@@ -1,0 +1,19 @@
+{
+  "name": "portable-design-skills",
+  "owner": {
+    "name": "necromancer124"
+  },
+  "metadata": {
+    "description": "portable-design-skills: source-backed colors, intentional layouts, real HTML and PNG artifacts"
+  },
+  "plugins": [
+    {
+      "name": "portable-design-skills",
+      "source": "./",
+      "description": "Three design skills for posters, flyers, websites, landing pages and dashboards: real Sanzo Wada color palettes with contrast checks, a composition-first design workflow, and HTML posters exported to PNG.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "category": "design"
+    }
+  ]
+}

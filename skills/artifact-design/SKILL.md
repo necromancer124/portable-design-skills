@@ -1,6 +1,6 @@
 ---
 name: artifact-design
-description: Use when designing a website, poster, landing page, or HTML prototype. Choose a fitting composition, typography, color roles, and interactions, then render and inspect the result.
+description: "Use whenever the user wants something designed or wants it to look good: a website, landing page, dashboard, poster, flyer, slide, or HTML prototype, or a request to polish, restyle, redesign, or \"make it look good\". Chooses a composition that fits the task, typography, color roles, and interactions, then builds a complete HTML artifact, renders it, and inspects the result. Pair with sanzo-wada-design for color palettes and html-poster-design for poster PNG export."
 license: MIT
 compatibility: Works with any agent that can read Markdown. File creation and browser rendering require the host agent's tools; no specific AI provider is required.
 metadata:
