@@ -62,7 +62,9 @@ class PackageTests(unittest.TestCase):
             if path == Path(__file__):
                 continue
             if path.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp'):
-                self.assertTrue('docs' in path.parts, f'Unexpected image: {path}')
+                # Only the docs preview and the plugin listing icon are allowed.
+                plugin_icon = path == ROOT / '.claude-plugin/icon.png'
+                self.assertTrue('docs' in path.parts or plugin_icon, f'Unexpected image: {path}')
                 continue
             text = path.read_text(encoding='utf-8')
             for token in forbidden:
