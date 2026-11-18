@@ -18,6 +18,23 @@ No API key, paid AI provider, Claude Design account, or hosted image service is 
 
 These are procedures, not a single fixed aesthetic. Pink, burgundy, blue, or restrained editorial layouts are choices driven by the brief—not a requirement to imitate any AI vendor's branding.
 
+## Install as a Claude Code plugin
+
+In Claude Code, run:
+
+```
+/plugin install portable-design-skills --marketplace necromancer124/portable-design-skills
+```
+
+On Claude Code older than 2.1.275, use two steps instead:
+
+```
+/plugin marketplace add necromancer124/portable-design-skills
+/plugin install portable-design-skills@portable-design-skills
+```
+
+Then start a new session. The three skills load as `portable-design-skills:sanzo-wada-design`, `portable-design-skills:artifact-design`, and `portable-design-skills:html-poster-design`, and Claude can pick them up on its own when you ask for a poster, flyer, website, landing page, dashboard, or color palette. The palette helper needs Python 3.10+; PNG export also needs the optional renderer described below.
+
 ## Use it with an AI assistant
 
 ```sh
@@ -33,7 +50,7 @@ Or:
 
 > Use combination 75 to make a 1080 × 1350 poster. Keep my supplied image uncropped. Make separate English and Russian versions, export PNGs, and inspect the renders. Do not publish my photos.
 
-**Native installation:** copy the skill folders into your client's supported skill directory. Claude Code uses `.claude/skills/`; Codex uses `.agents/skills/`; Hermes supports profile-local and trusted project skills. Exact instructions and official links are in [compatibility.md](docs/compatibility.md).
+**Manual installation:** if you prefer not to use the plugin, copy the skill folders into your client's supported skill directory. Claude Code uses `.claude/skills/`; Codex uses `.agents/skills/`; Hermes supports profile-local and trusted project skills. Exact instructions and official links are in [compatibility.md](docs/compatibility.md).
 
 **Other assistants:** give them `AGENTS.md` and the relevant `SKILL.md` plus its assets/references/scripts. A chat-only model can read the instructions, but cannot execute lookup or render files without suitable tools. Instruction-format compatibility does not guarantee native discovery or identical design output.
 

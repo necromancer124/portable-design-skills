@@ -29,6 +29,26 @@ class PackageTests(unittest.TestCase):
             self.assertTrue(all(isinstance(k, str) and isinstance(v, str) for k, v in fm.get('metadata', {}).items()))
             self.assertFalse(set(fm) - {'name', 'description', 'license', 'compatibility', 'metadata', 'allowed-tools'})
 
+    def test_claude_plugin_manifests_match(self):
+        plugin_path = ROOT / '.claude-plugin/plugin.json'
+        market_path = ROOT / '.claude-plugin/marketplace.json'
+        self.assertTrue(plugin_path.is_file(), plugin_path)
+        self.assertTrue(market_path.is_file(), market_path)
+        plugin = json.loads(plugin_path.read_text(encoding='utf-8'))
+        market = json.loads(market_path.read_text(encoding='utf-8'))
+        self.assertEqual(plugin['name'], 'portable-design-skills')
+        self.assertRegex(plugin['version'], r'^\d+\.\d+\.\d+$')
+        self.assertEqual(plugin['license'], 'MIT')
+        self.assertIn('github.com/necromancer124/portable-design-skills', plugin['repository'])
+        self.assertTrue(market['owner']['name'])
+        entries = [p for p in market['plugins'] if p['name'] == plugin['name']]
+        self.assertEqual(len(entries), 1, 'marketplace must list this plugin exactly once')
+        entry = entries[0]
+        self.assertIn(entry['source'], ('./', '.'), 'marketplace must point at this repository root')
+        self.assertEqual(entry['version'], plugin['version'])
+        # The plugin root must actually hold the skills Claude Code discovers.
+        self.assertEqual(len(list((ROOT / 'skills').glob('*/SKILL.md'))), 3)
+
     def test_skill_local_backtick_file_references_exist(self):
         for path in (ROOT / 'skills').glob('*/SKILL.md'):
             for ref in re.findall(r'`((?:\.\./|references/|assets/|scripts/)[^`]+\.(?:md|json|py|html))`', path.read_text(encoding='utf-8')):

@@ -1,7 +1,6 @@
 ---
 name: sanzo-wada-design
-description: Use when designing with Sanzo Wada color palettes. Retrieve real combinations,
-  map colors to UI roles, and verify contrast for websites, posters, and presentations.
+description: "Use when choosing colors or a color palette for a website, landing page, dashboard, poster, flyer, slide deck, or brand; when the user wants something to look good with harmonious or unusual colors; or when they name Sanzo Wada or A Dictionary of Color Combinations. Retrieves real combinations from 348 bundled Wada palettes, maps them to UI roles (background, surface, text, accent), and checks text contrast with an offline Python helper."
 license: 'MIT; bundled data: references/DATA-LICENSE.md'
 compatibility: Palette helper requires Python 3.10+. No network, account, or paid
   API required.
@@ -33,7 +32,7 @@ Identify artifact, audience, existing brand constraints, light/dark preference, 
 **Done:** state a short design intent and respect the actual medium.
 
 ### 2. Retrieve actual combinations
-Run the bundled standard-library-only helper with Python 3.10 or later (`python` or `python3`, whichever is installed). Resolve SKILL_DIR from this skill directory, not a machine-specific home path; quote paths. Use your agent's available file and shell tools, not any particular vendor's tool names.
+Run the bundled standard-library-only helper with Python 3.10 or later (`python` or `python3`, whichever is installed). Resolve SKILL_DIR from this skill directory, not a machine-specific home path; quote paths. When installed as a Claude Code plugin, SKILL_DIR is `${CLAUDE_PLUGIN_ROOT}/skills/sanzo-wada-design`; for a copied install it is the folder that contains this SKILL.md. Use your agent's available file and shell tools, not any particular vendor's tool names.
 
 ```text
 python "SKILL_DIR/scripts/palettes.py" --search green --size 3 --limit 8

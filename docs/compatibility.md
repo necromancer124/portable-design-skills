@@ -10,14 +10,31 @@ Native discovery is client/version dependent. The paths below are documented con
 
 ## Claude Code
 
-Copy each skill directory **with its support folders** to one of:
+**Plugin (recommended).** This repository is also a Claude Code plugin and its own plugin marketplace (`.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`). In Claude Code 2.1.275 or later:
+
+```
+/plugin install portable-design-skills --marketplace necromancer124/portable-design-skills
+```
+
+On older versions:
+
+```
+/plugin marketplace add necromancer124/portable-design-skills
+/plugin install portable-design-skills@portable-design-skills
+```
+
+Start a new session afterwards. Plugin skills are namespaced, for example `/portable-design-skills:sanzo-wada-design`. Inside the plugin, skills find their scripts under `${CLAUDE_PLUGIN_ROOT}/skills/<skill-name>/`, which Claude Code fills in when it loads the skill.
+
+Source: https://code.claude.com/docs/en/discover-plugins
+
+**Manual copy (alternative).** Copy each skill directory **with its support folders** to one of:
 
 - Project: `<your-project>/.claude/skills/<skill-name>/`
 - Personal: `~/.claude/skills/<skill-name>/`
 
 For example, the project copy should contain `.claude/skills/sanzo-wada-design/SKILL.md` and its `assets`, `references`, and `scripts`. Repeat for the other skills. Do not copy only SKILL.md, and do not add an extra `skills/` nesting layer.
 
-Claude Code can then discover them or invoke `/sanzo-wada-design`, `/artifact-design`, and `/html-poster-design`. Visibility and invocation settings can differ by version and policy. The root `CLAUDE.md` is a convenience pointer for working in this checkout; it does not install the skills globally.
+With a manual copy, Claude Code can then discover them or invoke `/sanzo-wada-design`, `/artifact-design`, and `/html-poster-design`. Visibility and invocation settings can differ by version and policy. The root `CLAUDE.md` is a convenience pointer for working in this checkout; it does not install the skills globally.
 
 Source: https://code.claude.com/docs/en/skills
 

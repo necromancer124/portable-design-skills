@@ -1,6 +1,6 @@
 ---
 name: html-poster-design
-description: Use when creating or revising HTML posters, exporting high-resolution PNGs, or producing multiple language variants with uncropped images and reliable layout.
+description: "Use when the user asks for a poster, flyer, social media image, announcement, event graphic, fan tribute, or visual quote, or wants one revised with a new photo, name, palette, or language. Builds the poster as editable HTML/CSS at exact dimensions, keeps supplied images uncropped, makes separate language variants, exports a high-resolution PNG with the bundled Playwright renderer, and inspects the render."
 license: MIT
 compatibility: Authoring works with any Markdown-reading agent. PNG export requires Python 3.10+, Playwright, and an explicitly installed Chromium, Chrome, or Edge browser.
 metadata:
@@ -56,7 +56,7 @@ Keep faces, flags, logos, and photographs unchanged unless the user explicitly r
 Done: each language file has independently reviewed text, direction, and line breaks.
 
 ### 5. Install the optional renderer deliberately
-These commands are relative to the repository root:
+These commands are relative to the repository root. When installed as a Claude Code plugin, the repository root is `${CLAUDE_PLUGIN_ROOT}`, so the requirements file is `${CLAUDE_PLUGIN_ROOT}/requirements-render.txt`:
 
 ```sh
 python -m pip install -r requirements-render.txt
@@ -76,7 +76,7 @@ From the repository root:
 python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster --width 1080 --height 1350 --scale 2
 ```
 
-For an installed skill, replace the script/template paths with that skill's actual directory. Output at scale 2 is twice the CSS width and height. Use `--full-page` instead of `--selector` for a full-page website screenshot. The renderer blocks HTTP(S) asset requests by default. Prefer embedded or downloaded assets; use `--allow-network` only with deliberate permission to request remote resources.
+For an installed skill, replace the script/template paths with that skill's actual directory. When installed as a Claude Code plugin, that directory is `${CLAUDE_PLUGIN_ROOT}/skills/html-poster-design`, so the script is `${CLAUDE_PLUGIN_ROOT}/skills/html-poster-design/scripts/render.py` and the template is `${CLAUDE_PLUGIN_ROOT}/skills/html-poster-design/assets/poster.html`. Write output to the user's working directory, not inside the plugin folder. Output at scale 2 is twice the CSS width and height. Use `--full-page` instead of `--selector` for a full-page website screenshot. The renderer blocks HTTP(S) asset requests by default. Prefer embedded or downloaded assets; use `--allow-network` only with deliberate permission to request remote resources.
 
 Only render trusted HTML. Network blocking is not a security sandbox: JavaScript executes, local file references may be readable by the browser, and no protection against arbitrary hostile HTML is promised. The process checks broken images and page JavaScript errors, but does not audit every CSS box, CSS background image, or accessibility criterion.
 
