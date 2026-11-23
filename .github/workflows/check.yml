@@ -16,5 +16,5 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - run: python -m playwright install --with-deps chromium
       - run: python -m unittest discover -s tests -v
-      - run: python skills/sanzo-wada-design/scripts/palettes.py --self-test
-      - run: python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster
+      - run: python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --self-test
+      - run: python plugins/portable-design-skills/skills/html-poster-design/scripts/render.py plugins/portable-design-skills/skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster

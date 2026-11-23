@@ -12,9 +12,9 @@ No API key, paid AI provider, Claude Design account, or hosted image service is 
 
 | Skill | What it supplies |
 | --- | --- |
-| [`sanzo-wada-design`](skills/sanzo-wada-design/SKILL.md) | 159 colors and 348 combinations, offline lookup/filtering, palette gallery, and pairwise contrast checks. |
-| [`artifact-design`](skills/artifact-design/SKILL.md) | Composition-first design, typography, responsive behavior, image handling, source honesty, and visual review. |
-| [`html-poster-design`](skills/html-poster-design/SKILL.md) | Editable HTML posters, language-variant guidance, a generic template, and a working PNG export CLI. |
+| [`sanzo-wada-design`](plugins/portable-design-skills/skills/sanzo-wada-design/SKILL.md) | 159 colors and 348 combinations, offline lookup/filtering, palette gallery, and pairwise contrast checks. |
+| [`artifact-design`](plugins/portable-design-skills/skills/artifact-design/SKILL.md) | Composition-first design, typography, responsive behavior, image handling, source honesty, and visual review. |
+| [`html-poster-design`](plugins/portable-design-skills/skills/html-poster-design/SKILL.md) | Editable HTML posters, language-variant guidance, a generic template, and a working PNG export CLI. |
 
 These are procedures, not a single fixed aesthetic. Pink, burgundy, blue, or restrained editorial layouts are choices driven by the brief—not a requirement to imitate any AI vendor's branding.
 
@@ -44,7 +44,7 @@ cd portable-design-skills
 
 Then ask your file-capable assistant:
 
-> Read AGENTS.md and the three skills in skills/. Use the Sanzo Wada skill to show me three real palette directions, recommend one, and build a complete responsive website. Label any added neutrals and check text contrast.
+> Read AGENTS.md and the three skills in plugins/portable-design-skills/skills/. Use the Sanzo Wada skill to show me three real palette directions, recommend one, and build a complete responsive website. Label any added neutrals and check text contrast.
 
 Or:
 
@@ -59,11 +59,11 @@ Or:
 Requires Python 3.10 or later. On systems where the executable is `python3`, substitute that for `python`.
 
 ```sh
-python skills/sanzo-wada-design/scripts/palettes.py --id 75
-python skills/sanzo-wada-design/scripts/palettes.py --search pink --size 2 --min-contrast 4.5 --limit 6
-python skills/sanzo-wada-design/scripts/palettes.py --contrast '#a7d4e4' '#40456a'
-python skills/sanzo-wada-design/scripts/palettes.py --gallery output/wada-palettes.html
-python skills/sanzo-wada-design/scripts/palettes.py --self-test
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --id 75
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --search pink --size 2 --min-contrast 4.5 --limit 6
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --contrast '#a7d4e4' '#40456a'
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --gallery output/wada-palettes.html
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --self-test
 ```
 
 `--min-contrast` means **at least one color pair qualifies**, not that every pair is safe for body text. Contrast checks operate on opaque six-digit sRGB HEX colors; they are not a full accessibility audit.
@@ -75,7 +75,7 @@ Rendering is optional. Install its dependency and browser explicitly:
 ```sh
 python -m pip install -r requirements-render.txt
 python -m playwright install chromium
-python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster --width 1080 --height 1350 --scale 2
+python plugins/portable-design-skills/skills/html-poster-design/scripts/render.py plugins/portable-design-skills/skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster --width 1080 --height 1350 --scale 2
 ```
 
 This creates a **2160 × 2700 PNG** from a real 1080 × 1350 HTML canvas. To use an existing browser instead, add `--browser msedge` or `--browser chrome`.
@@ -93,7 +93,7 @@ python -m unittest discover -s tests -v
 The tests include a real browser PNG export, source-data checks, portable skill metadata, filtering/error handling, and privacy/path scans. Browser tests are explicitly skipped if Playwright is missing and fail with instructions if a requested browser is unavailable. [Verification details and limits](docs/verification.md).
 
 ## What the plugin runs, sends and fetches
-- **Runs, only when a skill is used:** `skills/sanzo-wada-design/scripts/palettes.py` (Python standard library only) to look up palettes, check contrast and write a local HTML gallery. For PNG export, `skills/html-poster-design/scripts/render.py` starts a headless Chromium, Chrome or Edge through Playwright to screenshot a local HTML file.
+- **Runs, only when a skill is used:** `plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py` (Python standard library only) to look up palettes, check contrast and write a local HTML gallery. For PNG export, `plugins/portable-design-skills/skills/html-poster-design/scripts/render.py` starts a headless Chromium, Chrome or Edge through Playwright to screenshot a local HTML file.
 - **Sends:** nothing. There are no hooks, no MCP servers, no telemetry and no API keys.
 - **Fetches:** nothing. The palette data is bundled, and the renderer blocks remote HTTP(S) requests unless you pass `--allow-network`. The generated gallery contains source links that only open if you click them.
 - **Installs:** nothing on its own. Playwright and a browser are installed by you, with the commands above.
@@ -106,4 +106,4 @@ The tests include a real browser PNG export, source-data checks, portable skill 
 - The artifact-design workflow adapts BadTechBandit's MIT-declared `claude-design` guide. It is **not affiliated with Anthropic or the hosted Claude Design product**.
 - This public repo intentionally contains **no personal photos, private posters, chat transcripts, or credentials**. The preview is a new generic example.
 
-See [LICENSE](LICENSE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), and the bundled [dataset license](skills/sanzo-wada-design/references/DATA-LICENSE.md).
+See [LICENSE](LICENSE), [THIRD_PARTY_NOTICES.md](plugins/portable-design-skills/THIRD_PARTY_NOTICES.md), and the bundled [dataset license](plugins/portable-design-skills/skills/sanzo-wada-design/references/DATA-LICENSE.md).

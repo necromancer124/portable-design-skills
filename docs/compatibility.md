@@ -2,7 +2,7 @@
 
 ## Format vs runtime
 
-Every `skills/<name>/SKILL.md` follows the open [Agent Skills specification](https://agentskills.io/specification): matching lowercase directory/name, required name/description, optional license/compatibility, scalar string metadata, Markdown body, and relative support files.
+Every `plugins/portable-design-skills/skills/<name>/SKILL.md` follows the open [Agent Skills specification](https://agentskills.io/specification): matching lowercase directory/name, required name/description, optional license/compatibility, scalar string metadata, Markdown body, and relative support files.
 
 There are no proprietary tool schemas, dynamic shell injections, automatic network installs, API keys, or model-specific completion calls in the skill entry points. The host assistant must still have the tools and permissions to read/write files, run Python, and inspect images. A hosted chat with no filesystem cannot execute a local renderer just by reading these instructions.
 
@@ -66,7 +66,7 @@ The checkout includes `AGENTS.md`, `.cursor/rules/design-skills.mdc`, and `.gith
 
 For any client, explicitly request:
 
-> Read `skills/sanzo-wada-design/SKILL.md` and its linked references. Run the bundled helper using your shell tool, then apply a real combination to my artifact. Use the other design skills as needed.
+> Read `plugins/portable-design-skills/skills/sanzo-wada-design/SKILL.md` and its linked references. Run the bundled helper using your shell tool, then apply a real combination to my artifact. Use the other design skills as needed.
 
 If the client only accepts uploaded files, include the relevant supporting files. If it cannot run code, use another environment for lookup/rendering and explain that execution is unavailable. Do not fabricate output.
 

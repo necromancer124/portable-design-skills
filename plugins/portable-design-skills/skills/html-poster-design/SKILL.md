@@ -56,21 +56,14 @@ Keep faces, flags, logos, and photographs unchanged unless the user explicitly r
 Done: each language file has independently reviewed text, direction, and line breaks.
 
 ### 5. Install the optional renderer deliberately
-These commands are relative to the repository root. When installed as a Claude Code plugin, the repository root is `${CLAUDE_PLUGIN_ROOT}`, so the requirements file is `${CLAUDE_PLUGIN_ROOT}/requirements-render.txt`:
-
-```sh
-python -m pip install -r requirements-render.txt
-python -m playwright install chromium
-```
-
-If this skill was installed alone, `python -m pip install playwright` is sufficient for the Python package. Use a dedicated environment where appropriate. Run `python3` instead of `python` if that is the executable on the host.
+PNG export needs Playwright for Python and a browser, installed by the user. Point them to the official guide at https://playwright.dev/python/docs/intro (Python package plus its Chromium browser); do not install anything on your own. A dedicated environment is a good idea. Run `python3` instead of `python` if that is the executable on the host.
 
 The renderer defaults to downloaded Chromium. Alternatively use `--browser chrome` or `--browser msedge` for an already-installed channel. It does not install browsers, discover secret profiles, attach to the user's browser, or silently switch providers. Headless rendering uses a fresh browser context.
 
 Done: a documented installed browser is available, or the blocker is reported honestly.
 
 ### 6. Export the actual artifact
-From the repository root:
+From the plugin root (`${CLAUDE_PLUGIN_ROOT}` when installed as a Claude Code plugin):
 
 ```sh
 python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster --width 1080 --height 1350 --scale 2

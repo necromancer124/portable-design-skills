@@ -14,7 +14,7 @@ metadata:
 ## Overview
 A tool-independent workflow for making intentional visual artifacts, not a house style. Use `../sanzo-wada-design/SKILL.md` for source-backed colors and `../html-poster-design/SKILL.md` for poster export. This is not Anthropic's Claude Design service and does not call Claude or require a paid design tool.
 
-Adapted from the MIT-declared `claude-design` skill by BadTechBandit distributed in Hermes. See the repository's `THIRD_PARTY_NOTICES.md` and `licenses/claude-design-MIT.txt`. The portable edition removes vendor-specific tools and hosted-only behavior.
+Adapted from the MIT-declared `claude-design` skill by BadTechBandit distributed in Hermes. See the plugin's `THIRD_PARTY_NOTICES.md` and `licenses/claude-design-MIT.txt`. The portable edition removes vendor-specific tools and hosted-only behavior.
 
 ## When to use
 - A new landing page, playful tribute, promotional page, visual prototype, or redesigned screen.

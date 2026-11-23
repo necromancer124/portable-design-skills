@@ -6,8 +6,8 @@
 python -m pip install -r requirements-dev.txt
 python -m playwright install chromium
 python -m unittest discover -s tests -v
-python skills/sanzo-wada-design/scripts/palettes.py --self-test
-python skills/html-poster-design/scripts/render.py skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster
+python plugins/portable-design-skills/skills/sanzo-wada-design/scripts/palettes.py --self-test
+python plugins/portable-design-skills/skills/html-poster-design/scripts/render.py plugins/portable-design-skills/skills/html-poster-design/assets/poster.html --output output/poster.png --selector .poster
 ```
 
 Use `python3` if needed. For existing Chrome/Edge installations, add `--browser chrome` or `--browser msedge`; set `RENDER_BROWSER` to the same channel for browser tests. Windows PowerShell uses `$env:RENDER_BROWSER = 'msedge'`; POSIX shells use `RENDER_BROWSER=msedge python ...`.
