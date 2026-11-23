@@ -92,6 +92,12 @@ python -m unittest discover -s tests -v
 
 The tests include a real browser PNG export, source-data checks, portable skill metadata, filtering/error handling, and privacy/path scans. Browser tests are explicitly skipped if Playwright is missing and fail with instructions if a requested browser is unavailable. [Verification details and limits](docs/verification.md).
 
+## What the plugin runs, sends and fetches
+- **Runs, only when a skill is used:** `skills/sanzo-wada-design/scripts/palettes.py` (Python standard library only) to look up palettes, check contrast and write a local HTML gallery. For PNG export, `skills/html-poster-design/scripts/render.py` starts a headless Chromium, Chrome or Edge through Playwright to screenshot a local HTML file.
+- **Sends:** nothing. There are no hooks, no MCP servers, no telemetry and no API keys.
+- **Fetches:** nothing. The palette data is bundled, and the renderer blocks remote HTTP(S) requests unless you pass `--allow-network`. The generated gallery contains source links that only open if you click them.
+- **Installs:** nothing on its own. Playwright and a browser are installed by you, with the commands above.
+
 ## Source and licensing boundaries
 
 - Palette relationships come from a **community digital transcription** of Sanzo Wada's *A Dictionary of Color Combinations*, published by Seigensha. This is **not a scan or the full book**.
