@@ -35,7 +35,7 @@ def render(args):
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
-        raise RuntimeError('Install Playwright: python -m pip install -r requirements-render.txt') from None
+        raise RuntimeError('Playwright for Python is not installed. Follow https://playwright.dev/python/docs/intro') from None
     source = Path(args.input).expanduser().resolve()
     destination = Path(args.output).expanduser().resolve()
     errors = []
@@ -47,7 +47,7 @@ def render(args):
         try:
             browser = p.chromium.launch(**launch)
         except Exception as exc:
-            raise RuntimeError('Cannot launch browser. Install Chromium with python -m playwright install chromium, or select an installed --browser chrome or --browser msedge. ' + str(exc)) from None
+            raise RuntimeError('Cannot launch browser. Install the Playwright Chromium browser (https://playwright.dev/python/docs/browsers), or select an installed --browser chrome or --browser msedge. ' + str(exc)) from None
         try:
             context = browser.new_context(viewport={'width': args.width, 'height': args.height}, device_scale_factor=args.scale)
             if not args.allow_network:

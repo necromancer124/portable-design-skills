@@ -9,7 +9,7 @@ import struct
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RENDERER = ROOT / 'skills/html-poster-design/scripts/render.py'
+RENDERER = ROOT / 'plugins/portable-design-skills/skills/html-poster-design/scripts/render.py'
 
 class RendererTests(unittest.TestCase):
     def test_cli_explains_input_and_output(self):

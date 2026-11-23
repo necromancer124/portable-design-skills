@@ -10,11 +10,13 @@ import unittest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-PALETTES = ROOT / 'skills/sanzo-wada-design/scripts/palettes.py'
+PLUGIN = ROOT / 'plugins/portable-design-skills'
+SKILLS = PLUGIN / 'skills'
+PALETTES = SKILLS / 'sanzo-wada-design/scripts/palettes.py'
 
 class PackageTests(unittest.TestCase):
     def test_skill_frontmatter_uses_open_standard_fields(self):
-        skills = list((ROOT / 'skills').glob('*/SKILL.md'))
+        skills = list(SKILLS.glob('*/SKILL.md'))
         self.assertEqual(len(skills), 3)
         for path in skills:
             raw = path.read_text(encoding='utf-8')
@@ -30,7 +32,7 @@ class PackageTests(unittest.TestCase):
             self.assertFalse(set(fm) - {'name', 'description', 'license', 'compatibility', 'metadata', 'allowed-tools'})
 
     def test_claude_plugin_manifests_match(self):
-        plugin_path = ROOT / '.claude-plugin/plugin.json'
+        plugin_path = PLUGIN / '.claude-plugin/plugin.json'
         market_path = ROOT / '.claude-plugin/marketplace.json'
         self.assertTrue(plugin_path.is_file(), plugin_path)
         self.assertTrue(market_path.is_file(), market_path)
@@ -44,13 +46,14 @@ class PackageTests(unittest.TestCase):
         entries = [p for p in market['plugins'] if p['name'] == plugin['name']]
         self.assertEqual(len(entries), 1, 'marketplace must list this plugin exactly once')
         entry = entries[0]
-        self.assertIn(entry['source'], ('./', '.'), 'marketplace must point at this repository root')
+        self.assertEqual(entry['source'], './plugins/portable-design-skills', 'marketplace must point at the plugin folder')
+        self.assertTrue((ROOT / entry['source'] / '.claude-plugin/plugin.json').is_file())
         self.assertEqual(entry['version'], plugin['version'])
         # The plugin root must actually hold the skills Claude Code discovers.
-        self.assertEqual(len(list((ROOT / 'skills').glob('*/SKILL.md'))), 3)
+        self.assertEqual(len(list(SKILLS.glob('*/SKILL.md'))), 3)
 
     def test_skill_local_backtick_file_references_exist(self):
-        for path in (ROOT / 'skills').glob('*/SKILL.md'):
+        for path in SKILLS.glob('*/SKILL.md'):
             for ref in re.findall(r'`((?:\.\./|references/|assets/|scripts/)[^`]+\.(?:md|json|py|html))`', path.read_text(encoding='utf-8')):
                 self.assertTrue((path.parent / ref).is_file(), f'{path}: {ref}')
 
@@ -63,7 +66,7 @@ class PackageTests(unittest.TestCase):
                 continue
             if path.suffix.lower() in ('.png', '.jpg', '.jpeg', '.webp'):
                 # Only the docs preview and the plugin listing icon are allowed.
-                plugin_icon = path == ROOT / '.claude-plugin/icon.png'
+                plugin_icon = path == PLUGIN / '.claude-plugin/icon.png'
                 self.assertTrue('docs' in path.parts or plugin_icon, f'Unexpected image: {path}')
                 continue
             text = path.read_text(encoding='utf-8')

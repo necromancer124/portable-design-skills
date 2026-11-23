@@ -2,8 +2,7 @@
 name: sanzo-wada-design
 description: "Use when choosing colors or a color palette for a website, landing page, dashboard, poster, flyer, slide deck, or brand; when the user wants something to look good with harmonious or unusual colors; or when they name Sanzo Wada or A Dictionary of Color Combinations. Retrieves real combinations from 348 bundled Wada palettes, maps them to UI roles (background, surface, text, accent), and checks text contrast with an offline Python helper."
 license: 'MIT; bundled data: references/DATA-LICENSE.md'
-compatibility: Palette helper requires Python 3.10+. No network, account, or paid
-  API required.
+compatibility: Palette helper requires Python 3.10+. No network, account, or paid API required.
 metadata:
   author: Hermes Agent
   version: 1.0.1
